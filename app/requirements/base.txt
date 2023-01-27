@@ -6,3 +6,4 @@ sqlmodel==0.0.8
 asyncpg==0.27.0
 alembic==1.8.1
 sqlalchemy-utils==0.38.3
+passlib==1.7.4
