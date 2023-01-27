@@ -1,5 +1,4 @@
 from pathlib import Path
-from sys import modules
 
 from pydantic import BaseSettings
 

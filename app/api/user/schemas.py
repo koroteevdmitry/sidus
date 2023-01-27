@@ -29,14 +29,10 @@ class UserCreateSchema(BaseModel):
 
 
 class UserUpdateSchema(BaseModel):
-    username: Optional[str]
-    password: Optional[str]
     email: Optional[str]
     fist_name: Optional[str]
     last_name: Optional[str]
 
     @classmethod
     def create(cls, **data):
-        if 'password' in data:
-            data['password'] = get_hashed_password(data['password'])
         return cls.parse_obj(data)
