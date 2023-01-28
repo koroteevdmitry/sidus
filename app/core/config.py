@@ -24,6 +24,10 @@ class Settings(BaseSettings):
     _DB_BASE: str = "db"
     DB_ECHO: bool = False
 
+    # Redis settings
+    REDIS_HOST: str = "0.0.0.0"
+    REDIS_PASSWORD: str = "password"
+
     @property
     def DB_BASE(self):
         return self._DB_BASE

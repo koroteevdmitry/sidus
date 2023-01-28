@@ -1,6 +1,8 @@
-from api.router import api_router
 from fastapi import FastAPI
 from fastapi.responses import UJSONResponse
+
+from api.router import api_router
+from core.di.container import Container
 
 
 def get_app() -> FastAPI:
@@ -20,6 +22,9 @@ def get_app() -> FastAPI:
         openapi_url="/api/openapi.json",
         default_response_class=UJSONResponse,
     )
+
+    container = Container()
+    app.state.container = container
 
     app.include_router(router=api_router, prefix="/api")
 
