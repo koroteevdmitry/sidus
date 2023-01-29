@@ -13,6 +13,7 @@ from core.di.container import Container
 from core.redis import AsyncRedis
 from core.utils import verify_password
 from db.models.user import User
+from worker import send_email
 
 router = APIRouter()
 
@@ -57,6 +58,10 @@ async def create_user(payload: CreateUserRequestPayload, service: UserService = 
             status_code=HTTPStatus.UNPROCESSABLE_ENTITY,
             detail='User with this username already exists.'
         )
+    try:
+        send_email.delay(payload.email)
+    except Exception as e:
+        raise HTTPException(status_code=HTTPStatus.INTERNAL_SERVER_ERROR, detail=str(e))
 
     return await service.create_and_return_user(UserCreateSchema.create(**payload.dict()))
 
