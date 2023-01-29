@@ -27,6 +27,7 @@ class Settings(BaseSettings):
     # Redis settings
     REDIS_HOST: str = "0.0.0.0"
     REDIS_PASSWORD: str = "password"
+    REDIS_PORT: int = 6379
 
     @property
     def DB_BASE(self):

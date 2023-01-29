@@ -39,5 +39,16 @@ services:
     ports:
       - "6379:6379"
 
+  worker:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    command: celery worker --app=worker.celery
+    volumes:
+      - ./app:/usr/src/app
+    depends_on:
+      - web
+      - redis
+
 volumes:
   db_data:
