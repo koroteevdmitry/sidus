@@ -11,7 +11,7 @@
 2. For run project without docker use command:
 ```bash
 1. cd app/requrements
-2. pip install -r development.txt
+2. install poetry and run it: poetry install
 3. cd app/core && cat .env.example > .env
 4. run alembic upgrade head
 5. start server.py
